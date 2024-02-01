@@ -51,6 +51,5 @@ services:
 
 networks:
   kafka_network:
-    name: kafka_network
-    driver: bridge
+    external: true
   
