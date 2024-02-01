@@ -8,6 +8,7 @@ services:
     volumes:
       - ./var/minio:/data
     ports:
+      - "9000:9000"
       - "9001:9001"
     command: server /data --console-address ":9001"
     restart: always

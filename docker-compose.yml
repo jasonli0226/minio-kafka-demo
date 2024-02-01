@@ -8,7 +8,7 @@ services:
       - kafka_network
     ports:
       - '9092:9092'
-      - '9093:9093'
+      - '9093:9093'  
     environment:
       - KAFKA_CFG_NODE_ID=1
       - KAFKA_ENABLE_KRAFT=yes
@@ -44,13 +44,14 @@ services:
     container_name: kafka_consumer
     depends_on:
       - kafka
+    env_file: ./etc/kafka.env
     environment:
+      - MINIO_SERVER=http://minio:9000
       - KAFKA_SERVER=kafka:9092
     networks:
       - kafka_network
 
 networks:
   kafka_network:
-    name: kafka_network
-    driver: bridge
+    external: true
   
