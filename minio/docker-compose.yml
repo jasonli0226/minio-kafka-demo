@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    env_file: ./etc/minio.env
+    volumes:
+      - ./var/minio:/data
+    ports:
+      - "9001:9001"
+    command: server /data --console-address ":9001"
+    restart: always
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
+    external: true
